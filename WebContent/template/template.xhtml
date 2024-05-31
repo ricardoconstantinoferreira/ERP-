@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<link rel="stylesheet" href="../resources/css/bootstrap-theme.min.css"
+	type="text/css" />
+<link rel="stylesheet" href="../resources/css/bootstrap.min.css"
+	type="text/css" />
+<link rel="stylesheet" href="../resources/css/estilo.css"
+	type="text/css" />
+<script src="../resources/js/jquery.js"></script>
+<script src="../resources/js/bootstrap.min.js"></script>
+
+
+<h:head>
+	<h:body>
+
+		<!--  <ui:include src="../imports/menu.xhtml"></ui:include>-->
+		<h:form rendered="#{usuarioLogado != null}">
+			<nav id="myNavbar" class="navbar navbar-default" role="navigation">
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="../home/home.xhtml">Home</a></li>
+						<li class="dropdown"><a href="#" data-toggle="dropdown"
+							class="dropdown-toggle">Estabelecimento <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="../estabelecimento/listar.xhtml">Tela de
+										Listagem</a></li>
+								<li><a href="../estabelecimento/">Tela de Cadastro</a></li>
+							</ul></li>
+		
+						<li class="dropdown"><a href="#" data-toggle="dropdown"
+							class="dropdown-toggle">Grupo <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="../grupo/listar.xhtml">Tela de Listagem</a></li>
+								<li><a href="../grupo/">Tela de Cadastro</a></li>
+							</ul></li>
+		
+						<li class="dropdown"><a href="#" data-toggle="dropdown"
+							class="dropdown-toggle">Rede <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="../rede/listar.xhtml">Tela de Listagem</a></li>
+								<li><a href="../rede/">Tela de Cadastro</a></li>
+							</ul></li>
+		
+						<li class="dropdown"><a href="#" data-toggle="dropdown"
+							class="dropdown-toggle">Produtos <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="../produto/listar.xhtml">Tela de Listagem</a></li>
+								<li><a href="../produto/">Tela de Cadastro</a></li>
+							</ul></li>
+		
+						<li class="dropdown">
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Pedidos <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="../pedido/listar.xhtml">Tela de Listagem</a></li>
+								<li><a href="../pedido/">Tela de Cadastro</a></li>
+							</ul></li>
+		
+						<li class="dropdown">
+							
+							<!-- <f:passThroughAttribute name="style" value="margin-top:14px; margin-left:56px;"></f:passThroughAttribute>-->							
+								<h:commandLink value="Logout" action="#{loginController.deslogar}">
+									<f:passThroughAttribute name="data-toggle" value="dropdown"></f:passThroughAttribute>
+									<f:passThroughAttribute name="class" value="dropdown-toggle"></f:passThroughAttribute>
+									<f:passThroughAttribute name="style" value="text-decoration: none;"></f:passThroughAttribute>
+								</h:commandLink>						
+						</li>
+		
+					</ul>
+				</div>
+			</nav>
+		</h:form>
+
+		<div id="container" class="container">
+
+			<div id="cabecalho">
+				<h1>
+					<ui:insert name="titulo"></ui:insert>
+				</h1>
+			</div>
+
+
+			<ui:insert name="container"></ui:insert>
+		</div>
+	</h:body>
+</h:head>
+
+</html>

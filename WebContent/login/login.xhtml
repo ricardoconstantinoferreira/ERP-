@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+<h:head>	
+	<title>Login</title>
+</h:head>
+
+<ui:composition template="../template/template.xhtml">
+
+	<ui:define name="titulo">
+		Login
+	</ui:define>
+	
+	<ui:define name="container">
+		<h:messages styleClass="alert alert-success" glogalOnly="true" />
+
+		<h:form id="login">			
+
+			<div class="form-group">
+				<h:outputLabel value="Email: " for="email" />
+				<h:inputText class="form-control" required="true" requiredMessage="Por favor, informe o email" value="#{loginController.usuario.email}">
+					<f:passThroughAttribute name="type" value="email" />
+				</h:inputText>				
+			</div>
+
+			<div class="form-group">
+				<h:outputLabel value="Senha:" for="senha" />
+					<h:inputText id="senha" class="form-control" value="#{loginController.usuario.senha}" required="true" requiredMessage="Por favor, informe a senha">
+						<f:passThroughAttribute name="type" value="password" />
+					</h:inputText>																				
+			</div>
+
+			<div class="form-group">
+				<h:commandButton value="Efetue Login" class="btn btn-default" action="#{loginController.efetuaLogin()}" />
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</h:html>

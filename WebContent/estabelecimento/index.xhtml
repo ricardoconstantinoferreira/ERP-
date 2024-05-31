@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	>
+<h:head>
+	
+	<title>Cadastro de Estabelecimentos</title>
+</h:head>
+<ui:composition template="../template/template.xhtml">
+
+	<ui:define name="titulo">
+		Cadastro de Estabelecimentos
+	</ui:define>
+
+	<ui:define name="container">		
+
+		<h:messages styleClass="alert alert-success" />
+
+		<h:form>
+			<h:inputHidden
+				value="#{estabelecimentoController.estabelecimento.id}" />
+				
+			<div class="form-group">
+				<h:outputLabel value="CNPJ: " for="cnpj" />
+				<h:inputText class="form-control" required="true" requiredMessage="Por favor, o CNPJ é obrigatório" value="#{estabelecimentoController.estabelecimento.CNPJ}" />
+			</div>
+
+			<div class="form-group">
+				<h:outputLabel value="Nome Fantasia: " for="nomeFantasia"/>
+				<h:inputText class="form-control" required="true" requiredMessage="Por favor, Nome Fantasia é obrigatório" value="#{estabelecimentoController.estabelecimento.nomeFantasia}" />
+			</div>
+
+			<div class="form-group">
+				<h:outputLabel value="Razão Social: " for="razaoSocial" />
+				<h:inputText class="form-control" required="true" requiredMessage="Por favor, Razão Social é obrigatório" value="#{estabelecimentoController.estabelecimento.razaoSocial}" />
+			</div>
+			
+			<div class="form-group">		
+				<h:outputLabel value="Grupo: " for="grupo" />
+				<h:selectOneMenu class="form-control"
+					value="#{estabelecimentoController.grupoId}" 
+					name="grupo" required="true" requiredMessage="Por favor, o Grupo é obrigatório">
+					<f:selectItem itemValue="" itemLabel="--Selecione--"
+						noSelectionOption="true" />
+					<f:selectItems value="#{estabelecimentoController.grupos}"
+						var="grupo" itemLabel="#{grupo.nome}" itemValue="#{grupo.id}" />
+						<f:ajax event="change" render="renderRedeId"
+						listener="#{estabelecimentoController.carregarCombo(estabelecimentoController.grupoId)}" />					
+				</h:selectOneMenu>
+			</div>
+
+			<div class="form-group">
+				<h:outputLabel value="Rede: " for="rede" />
+				<h:selectOneMenu class="form-control"
+					value="#{estabelecimentoController.redeId}" 
+					name="rede" id="renderRedeId">
+					<f:selectItem itemValue="" itemLabel="--Selecione--"
+						noSelectionOption="true" />
+					<f:selectItems value="#{estabelecimentoController.redes}" var="rede"
+						itemLabel="#{rede.nome}" itemValue="#{rede.id}" />										
+				</h:selectOneMenu>
+			</div>							
+			
+			<div class="form-group">
+				<h:commandButton value="#{estabelecimentoController.botao}" class="btn btn-default"
+					action="#{estabelecimentoController.salva(estabelecimentoController.estabelecimento)}"></h:commandButton>
+				&nbsp;&nbsp;
+				<h:commandButton value="Limpar" class="btn btn-primary" action="#{estabelecimentoController.limpar()}"
+				immediate="true"></h:commandButton>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</h:html>

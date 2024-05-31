@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Lista de Pedidos</title>
+</h:head>
+<ui:composition template="../template/template.xhtml">
+
+	<ui:define name="titulo">
+		Consulta de Pedidos
+	</ui:define>
+
+	<ui:define name="container">
+		<h:panelGrid columns="1" columnClasses="left,right" style="width:100%">		    
+		    <p:chart type="pie" model="#{pedidoController.grafico}" />
+		</h:panelGrid>
+	
+		<h:dataTable class="table table-striped"
+			value="#{pedidoController.listaTotalPreco}" var="lista">
+		
+			<h:column>
+				<f:facet name="header">ID Estabelecimento</f:facet>
+				#{lista[0]}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Razão Social</f:facet>
+				#{lista[1]}
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Preço Total</f:facet>
+				<h:outputText id="valor" value="#{lista[2]}">					
+					<!-- <f:converterNumber currencyCode="R$" type="currency"  />  -->
+				</h:outputText>				
+			</h:column>
+		</h:dataTable>
+		
+	</ui:define>
+	
+</ui:composition>
+
+</h:html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Listagem de Redes</title>
+</h:head>
+<ui:composition template="../template/template.xhtml">
+
+	<ui:define name="titulo">
+		Listagem de Redes
+	</ui:define>
+
+	<ui:define name="container">
+		<h:form>
+			<div class="table-responsive">
+				<h:dataTable class="table table-striped"
+					value="#{redeController.redes}" var="rede">
+					<h:column>
+						<f:facet name="header">
+					ID
+				</f:facet>
+				#{rede.id}
+			</h:column>
+
+					<h:column>
+						<f:facet name="header">
+					Nome
+				</f:facet>
+				#{rede.nome}
+			</h:column>
+
+					<h:column>
+						<f:facet name="header">
+					Grupo
+				</f:facet>
+				#{rede.grupo.nome}
+			</h:column>
+
+					<h:column>
+						<f:facet name="header">
+					Alterar
+				</f:facet>
+						<h:commandButton value="Editar" class="btn btn-success"
+							action="#{redeController.editar(rede)}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+					Excluir
+				</f:facet>
+						<h:commandButton value="Excluir" class="btn btn-danger"
+							onclick="if (!confirm('Deseja excluir a rede #{rede.nome}?')) return false;"
+							action="#{redeController.excluir(rede.id)}" />
+					</h:column>
+
+				</h:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</h:html>
